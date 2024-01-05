@@ -17,12 +17,12 @@ namespace Save
         {
             JObject configData = new JObject
             ( // 데이터 저장
-            new JProperty("Lv", Player.Lv),
-            new JProperty("AtkPt", Player.attack),
-            new JProperty("DefPt", Player.defense),
-            new JProperty("Hp", Player.Hp),
-            new JProperty("Gold", Player.gold),
-            new JProperty("Exp", Player.exp)
+            new JProperty("Lv", Player.Instance.Lv),
+            new JProperty("AtkPt", Player.Instance.attack),
+            new JProperty("DefPt", Player.Instance.defense),
+            new JProperty("Hp", Player.Instance.Hp),
+            new JProperty("Gold", Player.Instance.gold),
+            new JProperty("Exp", Player.Instance.exp)
             ); // 배열 저장
             configData.Add("EquipA", JArray.FromObject(InfoPage.Instance.equipArmor));
             configData.Add("EquipW", JArray.FromObject(InfoPage.Instance.equipWeapon));
@@ -40,13 +40,13 @@ namespace Save
                 using (JsonTextReader reader = new JsonTextReader(file))
                 {
                     JObject json = (JObject)JToken.ReadFrom(reader);
-            
-                    Player.Lv = (int)json["Lv"];
-                    Player.attack = (float)json["AtkPt"];
-                    Player.defense = (float)json["DefPt"];
-                    Player.Hp = (float)json["Hp"];
-                    Player.gold = (float)json["Gold"];
-                    Player.exp = (int)json["Exp"];
+
+                    Player.Instance.Lv = (int)json["Lv"];
+                    Player.Instance.attack = (float)json["AtkPt"];
+                    Player.Instance.defense = (float)json["DefPt"];
+                    Player.Instance.Hp = (float)json["Hp"];
+                    Player.Instance.gold = (float)json["Gold"];
+                    Player.Instance.exp = (int)json["Exp"];
 
                     for (int i = 0; i < InfoPage.Instance.equipArmor.Length; i++)
                     {

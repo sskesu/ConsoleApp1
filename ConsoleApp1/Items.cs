@@ -301,13 +301,13 @@ namespace Item
                 // 방어구/무기 확인
                 if (index <= ArmorCount)
                 {
-                    Player.gold += armorList[InfoPage.Instance.invens[index - 1]].price * 85 / 100;
+                    Player.Instance.gold += armorList[InfoPage.Instance.invens[index - 1]].price * 85 / 100;
                     InfoPage.Instance.haveArmor[InfoPage.Instance.invens[index - 1]] = false;
                     InfoPage.Instance.equipArmor[InfoPage.Instance.invens[index - 1]] = false;
                 }
                 else
                 {
-                    Player.gold += weaponList[InfoPage.Instance.invens[index - 1] - InfoPage.Instance.haveArmor.Length].price * 85 / 100;
+                    Player.Instance.gold += weaponList[InfoPage.Instance.invens[index - 1] - InfoPage.Instance.haveArmor.Length].price * 85 / 100;
                     InfoPage.Instance.haveWeapon[InfoPage.Instance.invens[index - 1] - InfoPage.Instance.haveArmor.Length] = false;
                     InfoPage.Instance.equipWeapon[InfoPage.Instance.invens[index - 1] - InfoPage.Instance.haveArmor.Length] = false;
                 }
@@ -320,9 +320,9 @@ namespace Item
             {
                 ChangeColor.ColorBlue("이미 구매한 아이템입니다.");
             }
-            else if (Player.gold >= armorList[index - 1].price)
+            else if (Player.Instance.gold >= armorList[index - 1].price)
             {
-                Player.gold -= armorList[index - 1].price;
+                Player.Instance.gold -= armorList[index - 1].price;
                 InfoPage.Instance.haveArmor[index - 1] = true;
                 ChangeColor.ColorBlue("구매를 완료했습니다.");
             }
@@ -337,9 +337,9 @@ namespace Item
             {
                 ChangeColor.ColorBlue("이미 구매한 아이템입니다.");
             }
-            else if (Player.gold >= weaponList[index - 1 - InfoPage.Instance.haveArmor.Length].price)
+            else if (Player.Instance.gold >= weaponList[index - 1 - InfoPage.Instance.haveArmor.Length].price)
             {
-                Player.gold -= weaponList[index - 1 - InfoPage.Instance.haveArmor.Length].price;
+                Player.Instance.gold -= weaponList[index - 1 - InfoPage.Instance.haveArmor.Length].price;
                 InfoPage.Instance.haveWeapon[index - 1 - InfoPage.Instance.haveArmor.Length] = true;
                 ChangeColor.ColorBlue("구매를 완료했습니다.");
             }

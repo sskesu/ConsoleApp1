@@ -97,7 +97,7 @@ namespace Dungeon
                     case "1":
                     case "2":
                     case "3":
-                        if (Player.Hp <= 0)
+                        if (Player.Instance.Hp <= 0)
                         {
                             ChangeColor.ColorRed("HP가 부족합니다.\n");
                         }
@@ -107,7 +107,7 @@ namespace Dungeon
                         }
                         break;
                     case "0":
-                        Player.SetScene(Scene.Start);
+                        Player.Instance.SetScene(Scene.Start);
                         break;
 
                     default:
@@ -125,12 +125,12 @@ namespace Dungeon
                 Console.Write("체력 ");
                 ChangeColor.ColorMagenta(Convert.ToString(beforeHp));
                 Console.Write(" -> ");
-                ChangeColor.ColorMagenta(Convert.ToString(Player.Hp));
+                ChangeColor.ColorMagenta(Convert.ToString(Player.Instance.Hp));
                 Console.WriteLine();
                 Console.Write("Gold ");
                 ChangeColor.ColorMagenta(Convert.ToString(beforeGold));
                 Console.Write(" G -> ");
-                ChangeColor.ColorMagenta(Convert.ToString(Player.gold));
+                ChangeColor.ColorMagenta(Convert.ToString(Player.Instance.gold));
                 Console.WriteLine(" G\n");
 
                 ChangeColor.ColorMagenta("0");
@@ -168,13 +168,13 @@ namespace Dungeon
 
         void DungeonEnter(string index)
         {
-            float pAtk = Player.attack, pDef = Player.defense;
+            float pAtk = Player.Instance.attack, pDef = Player.Instance.defense;
             // 방어력 결정
             for (int i = 0; i < InfoPage.Instance.equipArmor.Length; i++)
             {
                 if (InfoPage.Instance.equipArmor[i])
                 {
-                    pDef = Player.defense + Items.Instance.GetDef(i);
+                    pDef = Player.Instance.defense + Items.Instance.GetDef(i);
                     break;
                 }
             }
@@ -184,23 +184,23 @@ namespace Dungeon
                 // 권장 방어력보다 낮으면 확률로 실패
                 if (random.Next(1, 101) <= 40)
                 {
-                    Player.Hp -= (random.Next(20, 36) - (pDef - Dundiffs[Convert.ToInt16(index) - 1].defReq)) / 2;
+                    Player.Instance.Hp -= (random.Next(20, 36) - (pDef - Dundiffs[Convert.ToInt16(index) - 1].defReq)) / 2;
                     ChangeColor.ColorRed("탐험 실패\n");
                     return;
                 }
             }
             // 던전 성공
-            beforeHp = Player.Hp;
-            beforeGold = Player.gold;
+            beforeHp = Player.Instance.Hp;
+            beforeGold = Player.Instance.gold;
             selectDungeon = Dundiffs[Convert.ToInt16(index) - 1].name;
             
             // 체력 -= 기본 체력 감소 - (내 방어력 - 권장 방어력)
             if (random.Next(20, 36) - (pDef - Dundiffs[Convert.ToInt16(index) - 1].defReq) >= 0)
             {
-                Player.Hp -= random.Next(20, 36) - (pDef - Dundiffs[Convert.ToInt16(index) - 1].defReq);
-                if (Player.Hp <= 0)
+                Player.Instance.Hp -= random.Next(20, 36) - (pDef - Dundiffs[Convert.ToInt16(index) - 1].defReq);
+                if (Player.Instance.Hp <= 0)
                 {
-                    Player.Hp = 0;
+                    Player.Instance.Hp = 0;
                 }
             }
 
@@ -210,14 +210,14 @@ namespace Dungeon
             {
                 if (InfoPage.Instance.equipWeapon[i])
                 {
-                    pAtk = Player.attack + Items.Instance.GetAtk(i);
+                    pAtk = Player.Instance.attack + Items.Instance.GetAtk(i);
                     break;
                 }
             }
             // (공격력 ~ 공격력 2배)% 만큼 기본 보상에서 추가해서 정산
-            Player.gold += (100 + random.Next(Convert.ToInt16(pAtk), Convert.ToInt16(pAtk * 2))) / 100.0f * Dundiffs[Convert.ToInt16(index) - 1].gold;
+            Player.Instance.gold += (100 + random.Next(Convert.ToInt16(pAtk), Convert.ToInt16(pAtk * 2))) / 100.0f * Dundiffs[Convert.ToInt16(index) - 1].gold;
 
-            Player.SetExp(1);
+            Player.Instance.SetExp(1);
             situation = Situation.Clear;
         }
     }

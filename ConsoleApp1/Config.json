@@ -6,7 +6,7 @@
   "Gold": 1500.0,
   "Exp": 0,
   "EquipA": [
-    false,
+    true,
     false,
     false,
     false
@@ -18,7 +18,7 @@
     false
   ],
   "HaveA": [
-    false,
+    true,
     false,
     false,
     false

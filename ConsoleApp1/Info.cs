@@ -10,19 +10,33 @@ using Item;
 namespace Info
 {
     // 플레이어 정보
-    public struct Player
+    public class Player
     {
-        public static Scene curScene = Scene.Start;
-        public static int Lv = 1;
-        public static string name = "name";
-        public static string job = "전사";
-        public static float attack = 10f;
-        public static float defense = 5f;
-        public static float Hp = 100;
-        public static float gold = 1500f;
-        public static int exp = 0;
+        public static Player _instance;
 
-        public static void SetScene(Scene scene)
+        public static Player Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new Player();
+                }
+                return _instance;
+            }
+        }
+
+        public Scene curScene = Scene.Start;
+        public int Lv = 1;
+        public string name = "name";
+        public string job = "전사";
+        public float attack = 10f;
+        public float defense = 5f;
+        public float Hp = 100;
+        public float gold = 1500f;
+        public int exp = 0;
+
+        public void SetScene(Scene scene)
         {
             curScene = scene;
         }
@@ -31,7 +45,7 @@ namespace Info
 
         }
 
-        public static void SetExp(int _exp)
+        public void SetExp(int _exp)
         {
             exp += _exp;
             while (exp >= Lv)
@@ -65,14 +79,14 @@ namespace Info
 
         public void InfoAnnounce()
         {
-            float pAtk = Player.attack, pDef = Player.defense;
+            float pAtk = Player.Instance.attack, pDef = Player.Instance.defense;
 
             ChangeColor.ColorYellow("상태 보기\n");
             Console.WriteLine("캐릭터의 정보가 표시됩니다.\n");
 
             Console.Write("Lv. ");
-            ChangeColor.ColorMagenta(Convert.ToString(Player.Lv) + "\n");
-            Console.WriteLine(Player.name + " ( " + Player.job + " )");
+            ChangeColor.ColorMagenta(Convert.ToString(Player.Instance.Lv) + "\n");
+            Console.WriteLine(Player.Instance.name + " ( " + Player.Instance.job + " )");
 
             Console.Write("공격력 : ");
             for (int i = 0; i < equipWeapon.Length; i++)
@@ -83,10 +97,10 @@ namespace Info
                 }
             }
             ChangeColor.ColorMagenta(Convert.ToString(pAtk));
-            if (Player.attack != pAtk)
+            if (Player.Instance.attack != pAtk)
             {
                 Console.Write(" (+");
-                ChangeColor.ColorMagenta(Convert.ToString(pAtk - Player.attack));
+                ChangeColor.ColorMagenta(Convert.ToString(pAtk - Player.Instance.attack));
                 Console.Write(")");
             }
             Console.WriteLine();
@@ -100,19 +114,19 @@ namespace Info
                 }
             }
             ChangeColor.ColorMagenta(Convert.ToString(pDef));
-            if (Player.defense != pDef)
+            if (Player.Instance.defense != pDef)
             {
                 Console.Write(" (+");
-                ChangeColor.ColorMagenta(Convert.ToString(pDef - Player.defense));
+                ChangeColor.ColorMagenta(Convert.ToString(pDef - Player.Instance.defense));
                 Console.Write(")");
             }
             Console.WriteLine();
 
             Console.Write("체 력 : ");
-            ChangeColor.ColorMagenta(Convert.ToString(Player.Hp) + "\n");
+            ChangeColor.ColorMagenta(Convert.ToString(Player.Instance.Hp) + "\n");
 
             Console.Write("Gold : ");
-            ChangeColor.ColorMagenta(Convert.ToString(Player.gold));
+            ChangeColor.ColorMagenta(Convert.ToString(Player.Instance.gold));
             Console.WriteLine("G");
 
             Console.WriteLine();
@@ -128,7 +142,7 @@ namespace Info
             switch (answer)
             {
                 case "0":
-                    Player.SetScene(Scene.Start);
+                    Player.Instance.SetScene(Scene.Start);
                     break;
 
                 default:

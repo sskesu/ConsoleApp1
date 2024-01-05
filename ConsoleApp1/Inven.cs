@@ -48,7 +48,7 @@ namespace Inven
                         break;
 
                     case "0":
-                        Player.SetScene(Scene.Start);
+                        Player.Instance.SetScene(Scene.Start);
                         break;
 
                     default:

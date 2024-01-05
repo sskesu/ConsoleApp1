@@ -35,23 +35,23 @@ namespace Home
             switch (answer)
             {
                 case "1":
-                    Player.SetScene(Scene.Information);
+                    Player.Instance.SetScene(Scene.Information);
                     break;
 
                 case "2":
-                    Player.SetScene(Scene.Inventory);
+                    Player.Instance.SetScene(Scene.Inventory);
                     break;
 
                 case "3":
-                    Player.SetScene(Scene.Shop);
+                    Player.Instance.SetScene(Scene.Shop);
                     break;
 
                 case "4":
-                    Player.SetScene(Scene.Dungeon);
+                    Player.Instance.SetScene(Scene.Dungeon);
                     break;
 
                 case "5":
-                    Player.SetScene(Scene.Rest);
+                    Player.Instance.SetScene(Scene.Rest);
                     break;
 
                 default:

@@ -42,7 +42,7 @@ namespace MainGame
             while (true)
             {
                 saveJson.Save();
-                switch (Player.curScene)
+                switch (Player.Instance.curScene)
                 {
                     case Scene.Start:
                         startPage.StartAnnounce();

@@ -43,7 +43,7 @@ namespace Shop
 
             Console.WriteLine("[보유 골드]");
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.Write(Player.gold); Console.WriteLine(" G\n");
+            Console.Write(Player.Instance.gold); Console.WriteLine(" G\n");
             Console.ResetColor();
 
             Console.WriteLine("[아이템 목록]\n");
@@ -82,7 +82,7 @@ namespace Shop
                         break;
 
                     case "0":
-                        Player.SetScene(Scene.Start);
+                        Player.Instance.SetScene(Scene.Start);
                         Console.Clear();
                         break;
 
