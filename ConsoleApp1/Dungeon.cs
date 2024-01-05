@@ -97,7 +97,14 @@ namespace Dungeon
                     case "1":
                     case "2":
                     case "3":
-                        DungeonEnter(index);
+                        if (Player.Hp <= 0)
+                        {
+                            ChangeColor.ColorRed("HP가 부족합니다.\n");
+                        }
+                        else
+                        {
+                            DungeonEnter(index);
+                        }
                         break;
                     case "0":
                         Player.SetScene(Scene.Start);
@@ -191,6 +198,10 @@ namespace Dungeon
             if (random.Next(20, 36) - (pDef - Dundiffs[Convert.ToInt16(index) - 1].defReq) >= 0)
             {
                 Player.Hp -= random.Next(20, 36) - (pDef - Dundiffs[Convert.ToInt16(index) - 1].defReq);
+                if (Player.Hp <= 0)
+                {
+                    Player.Hp = 0;
+                }
             }
 
             // 클리어 보상

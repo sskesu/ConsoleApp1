@@ -19,7 +19,7 @@ namespace Info
         public static float attack = 10f;
         public static float defense = 5f;
         public static float Hp = 100;
-        public static float gold = 25000f;
+        public static float gold = 1500f;
         public static int exp = 0;
 
         public static void SetScene(Scene scene)
