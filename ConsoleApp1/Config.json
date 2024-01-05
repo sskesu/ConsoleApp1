@@ -1,0 +1,42 @@
+{
+  "Lv": 3,
+  "AtkPt": 11.0,
+  "DefPt": 7.0,
+  "Hp": 42.0,
+  "Gold": 18425.0,
+  "Exp": 0,
+  "EquipA": [
+    false,
+    true,
+    false,
+    false
+  ],
+  "EquipW": [
+    false,
+    false,
+    false,
+    true
+  ],
+  "HaveA": [
+    true,
+    true,
+    true,
+    false
+  ],
+  "HaveW": [
+    true,
+    false,
+    false,
+    true
+  ],
+  "inventory": [
+    0,
+    1,
+    2,
+    4,
+    7,
+    0,
+    0,
+    0
+  ]
+}
